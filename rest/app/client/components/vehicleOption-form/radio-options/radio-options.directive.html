@@ -1,0 +1,12 @@
+<div class="row" style="margin-left: 1px;">
+    <label for="" class="control-label">{{rad.label}}</label>
+    <!-- <div ng-repeat="item in rad.options" id="radio-{{item.name}}"> -->
+
+        <label class="custom-control custom-radio" ng-repeat="item in rad.options">
+            <input name="item.model" type="radio" ng-checked="item.checked" ng-click="rad.onRadioClick({option:item})" value="{{item.name}}"
+                ng-model="rad.model[item.model]" class="custom-control-input">
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">{{item.name}}</span>
+        </label>
+    <!-- </div> -->
+</div>

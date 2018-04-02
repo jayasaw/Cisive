@@ -1,0 +1,68 @@
+<div id="main_content_wrap" class="outer">
+  <section id="main_content" class="inner main-inner">
+    <wizard on-finish="finished()" indicators-position="top">
+      <wz-step wz-title="Insured Data" canexit="exitValidation">
+       <insured-form></insured-form>
+      </wz-step>
+      <wz-step wz-title="Vehicle Information" canenter="enterValidation">
+          <vehicle-info-form></vehicle-info-form>
+        <!-- <h1>Even More steps</h1>
+        <p>I can't deal with so many steps. ARGH</p>
+        <div class="form-group row">
+          <div class="col-xs-12 col-xs-offset-6">
+            <input type="button" class="btn btn-block btn-info" wz-previous="logStep()" value="BACK" />
+            <input type="button" class="btn btn-block btn-info" wz-next="logStep()" value="NEXT" />
+          </div>
+        </div>
+      </wz-step>
+      <wz-step wz-title="Odometer Reading">
+        <h1>Sup?</h1>
+        <p>I don't even know what to write!</p>
+        <div class="form-group row">
+          <div class="col-xs-12 col-xs-offset-6">
+            <input type="button" class="btn btn-block btn-info" wz-previous="logStep()" value="BACK" />
+            <input type="button" class="btn btn-block btn-info" wz-next="logStep()" value="NEXT" />
+          </div>
+        </div> -->
+      </wz-step>
+      <wz-step wz-title="Vehicle Options" canenter = "exitValidation">
+          <vehicle-option-form></vehicle-option-form>
+        <!-- <h1>Finish him</h1>
+        <p>Finally this ends!</p>
+        <div class="form-group row">
+          <div class="col-xs-12 col-xs-offset-6">
+             <input type="button" class="btn btn-block btn-info" wz-previous="logStep()" value="BACK" /> -->
+            <!-- <input type="button" class="btn btn-block btn-info" wz-next="logStep()" value="END" />
+            <input type="button" class="btn btn-block btn-info" ng-click="goBack()" value="Click here to start again" />
+            <input type="button" class="btn btn-block btn-info" wz-reset value="Click here to reset" />
+          </div> -->
+        <!-- </div> -->
+      </wz-step>
+      <wz-step wz-title="Vehicle Condition">
+        <h1>Finish him</h1>
+        <p>Finally this ends!</p>
+        <div class="form-group row">
+          <div class="col-xs-12 col-xs-offset-6">
+            <input type="button" class="btn btn-block btn-info" wz-previous="logStep()" value="BACK" />
+            <input type="button" class="btn btn-block btn-info" wz-next="logStep()" value="END" />
+            <input type="button" class="btn btn-block btn-info" ng-click="goBack()" value="Click here to start again" />
+            <input type="button" class="btn btn-block btn-info" wz-reset value="Click here to reset" />
+          </div>
+        </div>
+      </wz-step>
+      <wz-step wz-title="Inspection Summary">
+        <h1>Finish him</h1>
+        <p>Finally this ends!</p>
+        <div class="form-group row">
+          <div class="col-xs-12 col-xs-offset-6">
+            <input type="button" class="btn btn-block btn-info" wz-previous="logStep()" value="BACK" />
+            <input type="button" class="btn btn-block btn-info" wz-next="logStep()" value="END" />
+            <input type="button" class="btn btn-block btn-info" ng-click="goBack()" value="Click here to start again" />
+            <input type="button" class="btn btn-block btn-info" wz-reset value="Click here to reset" />
+          </div>
+        </div>
+      </wz-step>
+    </wizard>
+    <!-- <h1>{{formData.name}}</h1> -->
+  </section>
+</div>

@@ -1,0 +1,90 @@
+<!-- <h1>{{name}}</h1>
+<div>
+    <span>Inspection Date: {{date}}</span>
+    <br>
+    <span>Time:{{time}}</span>
+    <br>
+    <form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
+
+        <div class="form-group">
+            <label for="exampleSelect1">Adverse Conditions:</label>
+            <select class="form-control" name="mySelect" id="mySelect" ng-options="option.name for option in data.availableOptions track by option.id"
+                ng-model="data.selectedOption">
+            </select>
+            <span>selectedOption: {{data.selectedOption}}</span>
+        </div>
+
+        <div class="form-group row">
+            <label for="example-number-input" class="col-form-label">Policy/Application Number</label>
+            <div class="col-10">
+                <input class="form-control" type="number" value="42" id="example-number-input">
+            </div>
+        </div>
+
+        <div class="row col-12">
+            <label class="col-3">Is this a commercial vehicle? </label>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" ng-model="checkboxModel.value2" ng-true-value="'YES'" ng-false-value="'NO'"> YES
+                </label>
+            </div>
+            <span class="col-2">value = {{checkboxModel.value2}}</span>
+            <br/>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : userForm.lastName.$invalid && !userForm.lastName.$pristine }">
+            <label for="lastName">Insured's Last Name/Company Name</label>
+            <input type="text" class="form-control" id="a" placeholder="Insured's Last Name/Company Name" ng-minlength="3" ng-maxlength="8" ng-model="lastName"
+                required>
+
+                <p ng-show="userForm.lastName.$error.minlength" class="help-block">Username is too short.</p>
+                <p ng-show="userForm.lastName.$error.maxlength" class="help-block">Username is too long.</p>
+        </div>
+
+        <div class="form-group">
+            <label for="firstName">Insured's First Name</label>
+            <input type="text" class="form-control" id="firstName" placeholder="Insured's First Name" ng-model="firstName" required>
+            <p ng-show="insuredInfo.firstName.$error.required" class="error">You name is required.</p>
+        </div>
+
+        <div class="form-group">
+            <label for="middleName">Insured's Middle Initial(1st letter)</label>
+            <input type="text" class="form-control" id="middleName" placeholder="Insured's Middle Initial(1st letter)" ng-model="middleName"
+                required>
+        </div>
+        <code>name = {{lastName}} {{firstName}} {{middleName}}</code>
+        <br>
+
+      
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+    </form>
+</div> -->
+
+<form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
+
+    <!-- NAME -->
+    <div class="form-group" ng-class="{ 'has-danger' : userForm.name.$invalid && !userForm.name.$pristine }">
+        <label>Name*</label>
+        <input type="text" name="name" class="form-control form-control-danger" ng-model="user.name" required>
+        <p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block">You name is required.</p>
+    </div>
+
+    <!-- USERNAME -->
+    <div class="form-group" ng-class="{ 'has-danger' : userForm.username.$invalid && !userForm.username.$pristine }">
+        <label>Username</label>
+        <input type="text" name="username" class="form-control form-control-danger" ng-model="user.username" ng-minlength="3" ng-maxlength="8">
+        <p ng-show="userForm.username.$error.minlength" class="help-block">Username is too short.</p>
+        <p ng-show="userForm.username.$error.maxlength" class="help-block">Username is too long.</p>
+    </div>
+
+    <!-- EMAIL -->
+    <div class="form-group" ng-class="{ 'has-danger' : userForm.email.$invalid && !userForm.email.$pristine }">
+        <label>Email</label>
+        <input type="email" name="email" class="form-control form-control-danger" ng-model="user.email">
+        <p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Enter a valid email.</p>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>

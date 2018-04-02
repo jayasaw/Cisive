@@ -1,0 +1,29 @@
+<div class="container">
+    <h2>Radio Equipment</h2>
+    <carco-checkbox label='AM/FM/CD Player' model='radioEquipmentModel' options='radioEquipment' on-radio-change1='checked(option)'
+        on-checkbox-click='checked(option)'>
+    </carco-checkbox>
+    <br/>
+    <h2>Antitheft Device</h2>
+    <carco-checkbox model='antitheftDeviceModel' options='antitheftDevice' on-radio-change1='checked(option)' on-checkbox-click='checked(option)'>
+    </carco-checkbox>
+
+    <br/>
+    <h2>Exterior</h2>
+    <carco-checkbox model='exteriorModel' options='exterior' on-radio-change1='checked(option)' on-checkbox-click='checked(option)'>
+    </carco-checkbox>
+
+    <h2>Safty</h2>
+    <carco-checkbox model='saftyModel' options='safty' on-radio-change1='checked(option)' on-checkbox-click='checked(option)'>
+    </carco-checkbox>
+
+
+    <!-- <button ng-click="logModel()">log Model</button> -->
+
+    <div class="form-actions">
+        <div class="col-xs-12 col-xs-offset-6">
+            <input type="button" class="btn btn-primary" wz-next="logStep(insuredInfo)" value="Save & Continue" />
+        </div>
+    </div>
+    </form>
+</div>

@@ -1,0 +1,162 @@
+<div class="container">
+    <form name="vehicleInfoForm" ng-submit="vehicleInfo()" role="form" novalidate>
+        <div class="form-group">
+            <select class="form-control" ng-options="year.value as year.label for year in years" name="year" ng-model="vehicleInfo.year"
+                ng-change="GetValue()" required>
+                <option value="" selected disabled>Select Year</option>
+            </select>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error': vehicleInfoForm.make.$touched && vehicleInfoForm.make.$error.required, 'has-success':vehicleInfoForm.make.$valid}">
+            <input autocomplete="off" type="text" name="make" id="make" class="form-control" ng-model="vehicleInfo.make" placeholder="Make"
+                required />
+            <span ng-show="vehicleInfoForm.make.$touched && vehicleInfoForm.make.$error.required" class="help-block">Make is required</span>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error': vehicleInfoForm.model.$touched && vehicleInfoForm.model.$error.required, 'has-success':vehicleInfoForm.model.$valid}">
+            <input autocomplete="off" type="text" name="model" id="model" class="form-control" ng-model="vehicleInfo.model" placeholder="Model"
+                required />
+            <span ng-show="vehicleInfoForm.model.$touched && vehicleInfoForm.model.$error.required" class="help-block">Model is required</span>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error': vehicleInfoForm.colorMajor.$touched && vehicleInfoForm.colorMajor.$error.required, 'has-success':vehicleInfoForm.colorMajor.$valid}">
+            <input autocomplete="off" type="text" name="colorMajor" id="colorMajor" class="form-control" ng-model="vehicleInfo.colorMajor"
+                placeholder="Color Major" required />
+            <span ng-show="vehicleInfoForm.colorMajor.$touched && vehicleInfoForm.colorMajor.$error.required" class="help-block">Color Major is required</span>
+        </div>
+
+        <div class="form-group">
+            <input autocomplete="off" type="text" name="colorMinor" id="colorMinor" class="form-control" ng-model="vehicleInfo.colorMinor"
+                placeholder="Color Minor" />
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error': vehicleInfoForm.vehicleStyle.$touched && vehicleInfoForm.vehicleStyle.$error.required, 'has-success':vehicleInfoForm.vehicleStyle.$valid}">
+            <select class="form-control" ng-options="option.name for option in style track by option.id" name="vehicleStyle" ng-model="vehicleInfo.style"
+                ng-change="GetValue()" required>
+                <option value="" selected disabled>Select Style</option>
+            </select>
+            <span ng-show="vehicleInfoForm.vehicleStyle.$touched && vehicleInfoForm.vehicleStyle.$error.required" class="help-block">Style is required</span>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error': vehicleInfoForm.vehicleTransmission.$touched && vehicleInfoForm.vehicleTransmission.$error.required, 'has-success':vehicleInfoForm.vehicleTransmission.$valid}">
+            <select class="form-control" ng-options="option.name for option in transmission track by option.id" name="vehicleTransmission"
+                ng-model="vehicleInfo.transmission" ng-change="GetValue()" required>
+                <option value="" selected disabled>Select Transmission</option>
+            </select>
+            <span ng-show="vehicleInfoForm.vehicleTransmission.$touched && vehicleInfoForm.vehicleTransmission.$error.required" class="help-block">Style is required</span>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error': vehicleInfoForm.vehicleSeatMaterial.$touched && vehicleInfoForm.vehicleSeatMaterial.$error.required, 'has-success':vehicleInfoForm.vehicleTransmission.$valid}">
+            <select class="form-control" ng-options="option.name for option in seatMaterial track by option.id" name="vehicleSeatMaterial"
+                ng-model="vehicleInfo.seatMaterial" ng-change="GetValue()" required>
+                <option value="" selected disabled>Select Seat Material</option>
+            </select>
+            <span ng-show="vehicleInfoForm.vehicleSeatMaterial.$touched && vehicleInfoForm.vehicleSeatMaterial.$error.required" class="help-block">Style is required</span>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error': vehicleInfoForm.seatColor.$touched && vehicleInfoForm.seatColor.$error.required, 'has-success':vehicleInfoForm.seatColor.$valid}">
+            <input autocomplete="off" type="text" name="seatColor" id="seatColor" class="form-control" ng-model="vehicleInfo.seatColor"
+                placeholder="Seat Color" required />
+            <span ng-show="vehicleInfoForm.seatColor.$touched && vehicleInfoForm.seatColor.$error.required" class="help-block">Seat Color is required</span>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error': vehicleInfoForm.identificationNo.$touched && vehicleInfoForm.identificationNo.$error.required, 'has-success':vehicleInfoForm.identificationNo.$valid}">
+            <input class="form-control" name="identificationNo" type="number" class="form-control" ng-model="vehicleInfoForm.identificationNo"
+                placeholder="Enter Identification Number" value="" id="identification-number" required />
+            <span ng-show="vehicleInfoForm.identificationNo.$touched && vehicleInfoForm.identificationNo.$error.required" class="help-block">
+                Vehicle Identification Number is required</span>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error': vehicleInfoForm.plateNo.$touched && vehicleInfoForm.plateNo.$error.required, 'has-success':vehicleInfoForm.plateNo.$valid}">
+            <input autocomplete="off" type="text" name="plateNo" id="plateNo" class="form-control" ng-model="vehicleInfo.plateNo" placeholder="Enter Plate Number"
+                required />
+            <span ng-show="vehicleInfoForm.plateNo.$touched && vehicleInfoForm.plateNo.$error.required" class="help-block">Plate Number is required</span>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error': vehicleInfoForm.state.$touched && vehicleInfoForm.state.$error.required, 'has-success':vehicleInfoForm.state.$valid}">
+            <label for="username" class="control-label">State / Province</label>
+            <select class="form-control" name="state" id="state" ng-options="option.name for option in states track by option.id" ng-model="vm.user.selectedState"
+                ng-change="GetValue()" required>
+                <option value="" disabled selected>Select State / Province</option>
+            </select>
+            <span class="select-arrow"></span>
+            <span ng-show="vehicleInfoForm.state.$touched && vehicleInfoForm.state.$error.required" class="help-block">State is required</span>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error': vehicleInfoForm.odoMeter.$touched && vehicleInfoForm.odoMeter.$error.required, 'has-success':vehicleInfoForm.odoMeter.$valid}">
+            <input autocomplete="off" type="text" name="odoMeter" id="odo-meter" class="form-control" ng-model="vehicleInfo.odoMeter"
+                placeholder="Enter Odo Meter" required />
+            <span ng-show="vehicleInfoForm.odoMeter.$touched && vehicleInfoForm.odoMeter.$error.required" class="help-block">Odo Meter is required</span>
+        </div>
+
+        <div class="row" style="margin-left: 1px;">
+            <label for="" class="control-label">Location on the vehicle that VIN was recorded from</label>
+            <div ng-repeat="item in vehicleLocations" id="radio-{{item.name}}">
+
+                <label class="custom-control custom-radio">
+                    <input id="radio1" name="vehicleLocation" type="radio" ng-checked="item.checked" ng-change="handleRadioClick(item)" value="{{item.name}}"
+                        ng-model="vehicleInfo.selectedValue.name" class="custom-control-input">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">{{item.name}}</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group" ng-if="flag">
+            <input autocomplete="off" type="text" name="describeOther" id="describe-Other" class="form-control" ng-model="vehicleInfo.describeOther"
+                placeholder="Describe Other" />
+        </div>
+
+        <div class="row" style="margin-left: 1px;">
+            <label for="" class="control-label">Check here if</label>
+            <div ng-repeat="item in EPAStickers" id="radio-{{item.name}}">
+                <label class="custom-control custom-radio">
+                    <input id="EPA-Sticker" name="EPASticker" type="radio" ng-checked="item.checked" ng-change="EPAStickerClick(item)" value="{{item.name}}"
+                        ng-model="vehicleInfo.selectedEPASticker.name" class="custom-control-input">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">{{item.name}}</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="row" style="margin-left: 1px;">
+            <label for="" class="control-label">Principle Location where vehicle is kept (City & State / Province)</label>
+            <div ng-repeat="item in principleLocations" id="radio-{{item.name}}">
+
+                <label class="custom-control custom-radio">
+                    <input id="principle-location" name="principleLocation" type="radio" ng-checked="item.checked" ng-change="handleLocation(item)"
+                        value="{{item.name}}" ng-model="vehicleInfo.principleLocation.name" class="custom-control-input">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">{{item.name}}</span>
+                </label>
+            </div>
+        </div>
+
+
+        <div ng-if="otherFlag" class="form-group" ng-class="{ 'has-error': vehicleInfoForm.city.$touched && vehicleInfoForm.city.$error.required, 'has-success':vehicleInfoForm.city.$valid}">
+            <input autocomplete="off" type="text" name="city" id="city" class="form-control" ng-model="vehicleInfo.city" placeholder="Enter City"
+                required />
+            <span ng-show="vehicleInfoForm.city.$touched && vehicleInfoForm.city.$error.required" class="help-block">City is required</span>
+        </div>
+
+        <div ng-if="otherFlag" class="form-group" ng-class="{ 'has-error': vehicleInfoForm.Insuredstate.$touched && vehicleInfoForm.Insuredstate.$error.required, 'has-success':vehicleInfoForm.Insuredstate.$valid}">
+            <label for="username" class="control-label">State / Province</label>
+            <select class="form-control" name="Insuredstate" id="insured-state" ng-options="option.name for option in states track by option.id"
+                ng-model="vm.user.selectedInsuredstate" ng-change="GetInsuredState()" required>
+                <option value="" disabled selected>Select State / Province</option>
+            </select>
+            <span class="select-arrow"></span>
+            <span ng-show="vehicleInfoForm.Insuredstate.$touched && vehicleInfoForm.Insuredstate.$error.required" class="help-block">State is required</span>
+        </div>
+
+
+        <div class="form-actions">
+                <div class="col-xs-12 col-xs-offset-6">
+
+                    <input type="button" class="btn btn-primary" wz-previous="logStep()" value="BACK" />
+                    <input type="button" class="btn btn-primary" ui-sref="login" value="Cancel" />
+                    <input type="button" class="btn btn-primary" wz-next="logStep(vehicleInfoForm)" value="Save & Continue" />
+                </div>
+            </div>
+    </form>
+</div>

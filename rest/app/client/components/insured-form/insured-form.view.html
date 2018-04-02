@@ -1,0 +1,180 @@
+<div class="container">
+    <h2>Policy Details</h2>
+    <span>Inspection Date: {{date}}</span>
+    <br>
+    <span>Time:{{time}}</span>
+    <br>
+    <form name="insuredDataForm" ng-submit="insuredData()" role="form" novalidate>
+
+        <div class="form-group">
+            <select class="form-control" name="adverse" id="adverse" ng-options="option.name for option in adverseData.adverseConditions track by option.id"
+                ng-model="insuredInfo.adverseData.selectedAdverse" ng-change="GetValue()" required>
+                <option value="" disabled selected>Select Adverse Condition</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <select class="form-control" name="insuranceCompany" id="insuranceCompany" ng-options="option.name for option in insuranceCompanyData.insuranceCompanies track by option.id"
+                ng-model="insuredInfo.insuranceCompanyData.selectedInsuranceCompany" ng-change="GetValue()" required>
+                <option value="" disabled selected>Select Insurance Company</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" type="number" class="form-control" ng-model="insuredInfo.policyNumber" placeholder="Policy / Appliction No"
+                value="" id="policy-number">
+        </div>
+
+        <div class="form-group ">
+            <span class="custom-control-description">Is this a commercial vehicle?</span>
+            <label class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" ng-model="insuredInfo.checkboxVal">
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">YES</span>
+            </label>
+            {{insuredInfo.checkboxVal}}
+        </div>
+
+        <h2>Personal Details</h2>
+
+        <div class="form-group">
+            <input autocomplete="off" type="text" name="lastName" id="lastName" class="form-control" ng-model="insuredInfo.lastName" placeholder="Insured's Last name / Company"
+            />
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error': insuredDataForm.firstName.$touched && insuredDataForm.firstName.$error.required, 'has-success':insuredDataForm.firstName.$valid}">
+            <input autocomplete="off" type="text" name="firstName" id="firstName" class="form-control"
+                ng-model="insuredInfo.firstName" placeholder="Insured's First name" required />
+            <span ng-show="insuredDataForm.firstName.$touched && insuredDataForm.firstName.$error.required" class="help-block">Insured's first name is required</span>
+        </div>
+
+        <div class="form-group">
+            <input autocomplete="off" type="text" name="middleName" id="middleName" class="form-control" ng-model="insuredInfo.middleName" placeholder="Enter Middle Initial"
+                required/>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error': insuredDataForm.address.$touched && insuredDataForm.address.$error.required, 'has-success':insuredDataForm.address.$valid}">
+            <label for="exampleTextarea">Insured's Address</label>
+            <textarea class="form-control" name="address" 
+                placeholder="Enter Address" ng-model="insuredInfo.textareaValue" id="exampleTextarea" rows="3" required></textarea>
+            <span ng-show="insuredDataForm.address.$touched && insuredDataForm.address.$error.required" class="help-block">Insured's Address is required</span>
+            <span class="valueItems">
+                <strong>Value:</strong> {{insuredData.textareaValue}}</span>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error': insuredDataForm.town.$touched && insuredDataForm.town.$error.required, 'has-success':insuredDataForm.town.$valid}">
+            <input autocomplete="off" type="text" name="town" id="town" class="form-control" 
+                ng-model="insuredInfo.town" placeholder="Enter Town" required/>
+            <span ng-show="insuredDataForm.town.$touched && insuredDataForm.town.$error.required" class="help-block">Insured's Address is required</span>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error': insuredDataForm.state.$touched && insuredDataForm.state.$error.required, 'has-success':insuredDataForm.state.$valid}">
+            <input autocomplete="off" type="text" name="state" id="state" class="form-control"
+                ng-model="insuredInfo.insuredState" placeholder="Enter State" required/>
+            <span ng-show="insuredDataForm.state.$touched && insuredDataForm.state.$error.required" class="help-block">Insured's Address is required</span>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error': insuredDataForm.zipCode.$touched && insuredDataForm.zipCode.$error.required, 'has-warning':insuredDataForm.zipCode.$error.pattern, 'has-success':insuredDataForm.zipCode.$valid }">
+            <input class="form-control" type="number" ng-pattern="/^\d{5}$/" class="form-control" 
+                ng-model="insuredInfo.zipCode" placeholder="Enter Zip Code" value="" id="zip-code" name="zipCode" required>
+            <span ng-show="insuredDataForm.zipCode.$touched && insuredDataForm.zipCode.$error.required" class="help-block">zipcode is required</span>
+            <span ng-show="insuredDataForm.zipCode.$error.pattern" class="help-block"> The US zipcode must contain 5 digits.
+            </span>
+        </div>
+        <div class="row" style="margin-left: 1px;">
+            <div ng-repeat="item in typeOfPhoneNumbers" id="radio-{{item.name}}">
+                <label class="custom-control custom-radio">
+                    <input id="radio1" name="PhoneNoRadio" type="radio" ng-checked="item.checked" ng-change="handleRadioClick(item)" value="{{item.name}}"
+                        ng-model="insuredInfo.selectedValue.name" class="custom-control-input">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">{{item.name}}</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group" ng-class="{'has-error':insuredDataForm.ContactNumber.$error.number || insuredDataForm.ContactNumber.$error.required && insuredDataForm.ContactNumber.$touched,'has-warning':insuredDataForm.ContactNumber.$error.maxlength || insuredDataForm.ContactNumber.$error.minlength,'has-success':insuredDataForm.ContactNumber.$valid}">
+            <input type="number" autocomplete="off" class="form-control" 
+                ng-minlength="10" ng-maxlength="10" id="inputPhone" name="ContactNumber" placeholder="Phone No." ng-model="insuredInfo.ContactNumber"
+                required>
+            <div ng-if="insuredDataForm.ContactNumber.$touched || signupSubmitted">
+                <span class="help-block" ng-show="insuredDataForm.ContactNumber.$error.required || 
+                              insuredDataForm.ContactNumber.$error.number">
+                    Valid phone number is required
+                </span>
+                <span class="help-block" ng-show="((insuredDataForm.ContactNumber.$error.minlength ||
+                              insuredDataForm.ContactNumber.$error.maxlength) && 
+                              insuredDataForm.ContactNumber.$dirty) ">
+                    phone number should be 10 digits
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group" ng-class="{'has-error':insuredDataForm.phone.$error.number || insuredDataForm.phone.$error.required && insuredDataForm.phone.$touched,'has-warning':insuredDataForm.phone.$error.maxlength || insuredDataForm.phone.$error.minlength,'has-success':insuredDataForm.phone.$valid}">
+            <input type="number" autocomplete="off" class="form-control" 
+                ng-minlength="10" ng-maxlength="10" id="inputPhone" name="phone" placeholder="Enter Contact Number." ng-model="insuredInfo.phone"
+                required>
+            <div ng-if="insuredDataForm.phone.$touched || signupSubmitted">
+                <span class="help-block" ng-show="insuredDataForm.phone.$error.required || 
+                                  insuredDataForm.phone.$error.number">
+                    Valid phone number is required
+                </span>
+                <span class="help-block" ng-show="((insuredDataForm.phone.$error.minlength ||
+                                  insuredDataForm.phone.$error.maxlength) && 
+                                  insuredDataForm.phone.$dirty) ">
+                    phone number should be 10 digits
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error':insuredDataForm.email.$error.pattern || insuredDataForm.email.$error.required && insuredDataForm.email.$touched, 'has-success':insuredDataForm.email.$valid}">
+            <input autocomplete="off" type="text" name="email" id="email" class="form-control" 
+                ng-model="insuredInfo.email" placeholder="Enter Email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required />
+            <span ng-show="insuredDataForm.email.$touched && insuredDataForm.email.$error.required" class="help-block">Email is required</span>
+            <span ng-show="insuredDataForm.email.$dirty && insuredDataForm.email.$error.pattern" class="help-block">Please Enter Valid Email</span>
+        </div>
+
+        <div>
+            <label class="custom-control row">Is the Person with the vehicle the insured? </label>
+            <label class="custom-control custom-radio">
+                <input id="radio1" name="radio" type="radio" ng-value="'YES'" ng-model="insuredInfo.RadioValue" class="custom-control-input" required>
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">YES</span>
+            </label>
+            <label class="custom-control custom-radio">
+                <input id="radio2" name="radio" type="radio" ng-value="'NO'" ng-model="insuredInfo.RadioValue" class="custom-control-input" required>
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">NO</span>
+            </label>{{insuredData.RadioValue}}
+        </div>
+
+        <div class="form-group">
+            <input autocomplete="off" type="text" name="brokerName" id="broker-name" class="form-control" ng-model="insuredInfo.brokerName" placeholder="Enter broker name"
+                 />
+        </div>
+
+        <div>
+            <label class="custom-control row">Insurance Authorization from suppled by Insured</label>
+            <label class="custom-control custom-radio">
+                <input id="authRadio1" name="authRadio" type="radio" ng-value="'YES'" ng-model="insuredInfo.RadioFromValue" class="custom-control-input" required>
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">YES</span>
+            </label>
+            <label class="custom-control custom-radio">
+                <input id="authRadio2" name="authRadio" type="radio" ng-value="'NO'" ng-model="insuredInfo.RadioFromValue" class="custom-control-input" required>
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">NO</span>
+            </label>{{insuredInfo.RadioFromValue}}
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" type="number" class="form-control" ng-model="insuredInfo.authFormNumber" placeholder="Enter Number" value=""
+                id="auth-form-number">
+        </div>
+
+        <div class="form-actions">
+            <div class="col-xs-12 col-xs-offset-6">
+                <input type="button" class="btn btn-primary" wz-next="logStep(insuredInfo)" value="Save & Continue" />
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,89 @@
+<html ng-app="unitedLayer">
+
+<head lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+    <!-- <script type="text/javascript" src="bower_components/api-check/dist/api-check.min.js"></script> must appear before formly.js -->
+    <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+    <!-- <script type="text/javascript" src="bower_components/angular-formly/dist/formly.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.min.js"></script> -->
+    <script type="text/javascript" src="bower_components/angular-animate/angular-animate.js"></script>
+    <script type="text/javascript" src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script> -->
+    <script type="text/javascript" src="node_modules/tether/dist/js/tether.min.js"></script>
+    <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+    <script type="text/javascript" src="bower_components/angular-messages/angular-messages.min.js"></script>
+    <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
+    <script type="text/javascript" src="bower_components/moment/min/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="node_modules/angular-cookies/angular-cookies.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-touch/angular-touch.min.js"></script>
+    <script type="text/javascript" src="node_modules/angular-wizard/dist/angular-wizard.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-button-spinner/dist/angular-button-spinner.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-css/angular-css.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="node_modules/angular-wizard/dist/angular-wizard.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css" crossorigin="anonymous" />
+    <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" /> -->
+    <!--<link href="rest/css/style.css" rel="stylesheet" />-->
+    <link href="rest/css/icons.css" rel="stylesheet" />
+    <link href="rest/css/custom-radio-checkbox.css" rel="stylesheet" />
+    <link href="rest/app/client/components/wizard/wizard.css" rel="stylesheet" />
+    <!-- <link href="rest/app/client/components/login/login.css" rel="stylesheet" /> -->
+
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="rest/services/authentication.service.js"></script>
+    <script type="text/javascript" src="rest/services/flash.service.js"></script>
+
+    <!-- Fake user service for demo that uses local storage -->
+    <script type="text/javascript" src="rest/services/user.service.local-storage.js"></script>
+
+    <script type="text/javascript" src="rest/routes/routeConfig.js"></script>
+    <script type="text/javascript" src="rest/controllers/mainController.js"></script>
+    <script type="text/javascript" src="rest/app/client/controllers/main-page.js"></script>
+    <script type="text/javascript" src="rest/app/client/services/province.js"></script>
+
+    <!-- Insured information -->
+    <script type="text/javascript" src="rest/app/client/controllers/insured-info.js"></script>
+    <!-- Vehicle information -->
+    <script type="text/javascript" src="rest/app/client/controllers/vehicle-info.js"></script>
+    <!-- login -->
+    <script type="text/javascript" src="rest/app/client/components/login/login.controller.js"></script>
+    <!-- register -->
+    <script type="text/javascript" src="rest/app/client/components/register/register.controller.js"></script>
+    <!-- Forgot Password -->
+    <script type="text/javascript" src="rest/app/client/components/forgotPassword/forgotPassword.controller.js"></script>
+    <!-- Reset Password -->
+    <script type="text/javascript" src="rest/app/client/components/resetPassword/resetPassword.controller.js"></script>
+    <script type="text/javascript" src="rest/directive/match-password.directive.js"></script>
+    <!-- Validation Messages Service -->
+    <script type="text/javascript" src="rest/app/client/services/validation.messages.service.js"></script>
+    <!-- Wizard -->
+    <script type="text/javascript" src="rest/app/client/components/wizard/wizard.directive.js"></script>  
+    <!-- Insured Data -->
+    <script type="text/javascript" src="rest/app/client/components/insured-form/insured-form.directive.js"></script>
+    <!-- vehicleInfo-form -->
+    <script type="text/javascript" src="rest/app/client/components/vehicleInfo-form/vehicleInfo-form.directive.js"></script>
+    <!--vehicalOption-form-->
+    <script type = "text/javascript" src= "rest/app/client/components/vehicleOption-form/vehicleOption-form.directive.js"></script>
+    <script type = "text/javascript" src= "rest/app/client/components/vehicleOption-form/radio-options/radio-options.directive.js"></script>
+    <script type = "text/javascript" src= "rest/app/client/components/vehicleOption-form/checkbox-options/checkbox-options.directive.js"></script>
+
+</head>
+
+<body ng-controller="mainController">
+    <div class="container-fluid full-height">
+        <div id="holder" class="holder-grey">
+            <div class="">
+                <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash"
+                    ng-bind="flash.message"></div>
+                <div ui-view></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+<div class="row" style="margin-left: 1px;">
+    <label for="" class="control-label">{{check.label}}</label>
+    <div ng-repeat="item in check.options" id="radio-{{item.name}}">
+
+        <label class="custom-control custom-radio">
+            <input type="checkbox" ng-true-value="true" ng-false-value="false" ng-click="check.onCheckboxClick({option:item})" ng-model="check.model[item.model]"
+                class="custom-control-input">
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">{{item.name}}</span>
+        </label>
+
+        <div ng-if="item.radioItems">
+            <carco-radio  model='check.model'  options='item.radioItems' on-radio-click='check.onRadioChange(option)'></carco-radio>
+        </div>
+    </div>
+    
+    
+
+    <div class="transclude">
+        <ng-transclude></ng-transclude>
+    </div>
+</div>
