@@ -1,29 +1,468 @@
-<div class="container">
-    <h2>Radio Equipment</h2>
-    <carco-checkbox label='AM/FM/CD Player' model='radioEquipmentModel' options='radioEquipment' on-radio-change1='checked(option)'
-        on-checkbox-click='checked(option)'>
-    </carco-checkbox>
-    <br/>
-    <h2>Antitheft Device</h2>
-    <carco-checkbox model='antitheftDeviceModel' options='antitheftDevice' on-radio-change1='checked(option)' on-checkbox-click='checked(option)'>
-    </carco-checkbox>
+<!-- <div class="container">
+        <div class="container">
+            <h2>Radio Equipment</h2>
+            <carco-checkbox label='AM/FM/CD Player' model='radioEquipmentModel' options='radioEquipment' on-radio-change1='checked(option)'
+                on-checkbox-click='checked(option)'>
+            </carco-checkbox>
+            <br/>
+            <h2>Antitheft Device</h2>
+            <carco-checkbox model='antitheftDeviceModel' options='antitheftDevice' on-radio-change1='checked(option)' on-checkbox-click='checked(option)'>
+            </carco-checkbox>
 
-    <br/>
-    <h2>Exterior</h2>
-    <carco-checkbox model='exteriorModel' options='exterior' on-radio-change1='checked(option)' on-checkbox-click='checked(option)'>
-    </carco-checkbox>
+            <h2>(Automatically engage)</h2>
+            <carco-checkbox model='automaticallyEngage' options='automaticallyEngage' on-radio-change1='checked(option)' on-checkbox-click='checked(option)'>
+            </carco-checkbox>
 
-    <h2>Safty</h2>
-    <carco-checkbox model='saftyModel' options='safty' on-radio-change1='checked(option)' on-checkbox-click='checked(option)'>
-    </carco-checkbox>
+            <h2>(Must be manually engage)</h2>
+            <carco-checkbox model='mustbeManuallyEngage' options='mustbeManuallyEngage' on-radio-change1='checked(option)' on-checkbox-click='checked(option)'>
+            </carco-checkbox>
 
+            <h2>P.D. Issued rear Window sticker</h2>
+            <carco-checkbox model='mustbeManuallyEngage' options='IssuedrearWindowsticker' on-radio-change1='checked(option)' on-checkbox-click='checked(option)'>
+            </carco-checkbox>
 
-    <!-- <button ng-click="logModel()">log Model</button> -->
+            <h2>Seat</h2>
+            <carco-checkbox model='saftyModel' options='safty' on-radio-change1='checked(option)' on-checkbox-click='checked(option)'>
+            </carco-checkbox>
 
-    <div class="form-actions">
-        <div class="col-xs-12 col-xs-offset-6">
-            <input type="button" class="btn btn-primary" wz-next="logStep(insuredInfo)" value="Save & Continue" />
+            <h2>Instrumentation</h2>
+            <carco-checkbox model='saftyModel' options='safty' on-radio-change1='checked(option)' on-checkbox-click='checked(option)'>
+            </carco-checkbox>
+        
+            <br/>
+            <h2>Exterior</h2>
+            <carco-checkbox model='exteriorModel' options='exterior' on-radio-change1='checked(option)' on-checkbox-click='checked(option)'>
+            </carco-checkbox>
+        
+            <h2>Safty</h2>
+            <carco-checkbox model='saftyModel' options='safty' on-radio-change1='checked(option)' on-checkbox-click='checked(option)'>
+            </carco-checkbox>
+
+          
+            <carco-checkbox model='saftyModel' options='Otheroptionalequipment' on-radio-change1='checked(option)' on-checkbox-click='checked(option)'>
+            </carco-checkbox>
+
+    
+            <carco-checkbox model='saftyModel' options='Checkhere' on-radio-change1='checked(option)' on-checkbox-click='checked(option)'>
+            </carco-checkbox> -->
+            <!-- <div class="form-actions">
+                    <div class="col-xs-12 col-xs-offset-6">
+    
+                        <input type="button" class="btn btn-primary" wz-previous="logStep()" value="BACK" />
+                        <input type="button" class="btn btn-primary" ui-sref="login" value="Cancel" />
+                        <input type="button" class="btn btn-primary" wz-next="logStep(vehicleInfoForm)" value="Save & Continue" />
+                    </div>
+                </div>
+    </div> -->
+	 
+    <section class="content">
+        <div class="container-fluid">
+        <div class="info vehicle-options">
+            <form name = "vehileInfOption" ng-submit="vehileOption()" role="form">
+        
+                 <div class="details">				
+                    <div class="row-eq-height row1 clearfix">
+                        <div class="col-lg-4 col-md-4">
+                            <h1>Radio Equipment</h1>
+                            <div class="form-row border-collapse">				
+                                <select class="form-control">
+                                    <option>AM/FM/CD Player</option>
+                                </select>
+                                <div class="custom-control custom-checkbox">
+                                    <input id="dashborad"   ng-model="vehileOptionModel.dashborad"  type="checkbox">
+                                    <label for="dashborad">Dashboard</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input id="factory" ng-model="vehileOptionModel.factory" type="checkbox">
+                                    <label for="factory">Factory Installed</label>
+                                </div>
+                                <!-- <div class="indent-fields">
+                                    <label>Enter Information</label>
+                                    <input type="text" class="form-control" placeholder="Enter Model" value="">
+                                </div> -->
+                                <label>Enter Information</label>
+                                <div class="form-group" ng-class="{ 'has-error': vehileInfOption.model.$touched && vehileInfOption.model.$error.required, 'has-success':vehileInfOption.model.$valid}">
+                                        <input autocomplete="off" type="text" name="model" id="model" class="form-control" ng-model="vehileOptionModel.model" placeholder="Model"
+                                            required />
+                                        <span ng-show="vehileInfOption.model.$touched && vehileInfOption.model.$error.required" class="help-block">Model is required</span>
+                                    </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input id="gps"  ng-model="vehileOptionModel.gps" type="checkbox">
+                                    <label for="gps">GPS/Navigation System</label>
+                                </div>
+                                <div class="indent-fields">
+                                    <label>Permanently installed</label>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="radio" id="yes" value="" name="authorization" ng-model="vehileOptionModel.yes">
+                                        <label for="yes"> Yes</label>					
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="radio" id="ni" value="" name="authorization" ng-model="vehileOptionModel.no">
+                                        <label for="no"> No</label>	
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-4 col-md-4">
+                            <h1>Antitheft Device</h1>
+                            <div class="form-row border-collapse">				
+                                <div class="custom-control custom-checkbox">
+                                    <input id="checkbox4"  type="checkbox">
+                                    <label for="checkbox4">None</label>
+                                </div>
+                                <div class="indent-fields">
+                                    <label>Name/Model</label>
+                                    <div class="form-group" ng-class="{ 'has-error': vehileInfOption.model1.$touched && vehileInfOption.model.$error.required, 'has-success':vehileInfOption.model1.$valid}">
+                                            <input autocomplete="off" type="text" name="model1" id="model1" class="form-control" ng-model="vehileOptionModel.model1" placeholder="Model"
+                                                required />
+                                            <span ng-show="vehileInfOption.model1.$touched && vehileInfOption.model1.$error.required" class="help-block">Name  is required</span>
+                                        </div>
+                                </div>
+                                <div class="indent-fields mt-10">
+                                    <label>Manufacturer/Brand</label>
+                                    <div class="form-group" ng-class="{ 'has-error': vehileInfOption.model2.$touched && vehileInfOption.model2.$error.required, 'has-success':vehileInfOption.model2.$valid}">
+                                            <input autocomplete="off" type="text" name="model2" id="model2" class="form-control" ng-model="vehileOptionModel.model2" placeholder="Model"
+                                                required />
+                                            <span ng-show="vehileInfOption.model2.$touched && vehileInfOption.model2.$error.required" class="help-block">Brand  is required</span>
+                                        </div>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input id="systemPresent"  ng-model="vehileOptionModel.systemPresent"  type="checkbox">
+                                    <label for="systemPresent">System present, but inoperative</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input id="recoverySystem" ng-model="vehileOptionModel.recoverySystem"  type="checkbox">
+                                    <label for="recoverySystem">Auto recovery system</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input id="passiveDevice" ng-model="vehileOptionModel.passiveDevice" type="checkbox">
+                                    <label for="passiveDevice">Passive disabling device</label>
+                                    <h3 class="ml-5">(Automatically engage)</h3>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input id="activeDevice" ng-model="vehileOptionModel.activeDevice" type="checkbox">
+                                    <label for="activeDevice">Active disabling device</label>
+                                    <h3 class="ml-5">(Must be manually engage)</h3>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input id="siren" ng-model="vehileOptionModel.siren"  type="checkbox">
+                                    <label for="siren">Siren/audible alarm only</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input id="combat" ng-model="vehileOptionModel.combat"  type="checkbox">
+                                    <label for="combat">Combat auto theft (CAT)</label>
+                                    <h3 class="ml-5">P.D. Issued rear Window sticker</h3>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input id="vin" ng-model="vehileOptionModel.vin" type="checkbox">
+                                    <label for="vin">Etched glass indicating VIN or coding</label>
+                                </div>
+                            </div>
+                        </div> 
+                        
+                         <div class="col-lg-4 col-md-4">
+                            <h1>Exterior</h1> 
+                             <div class="form-row border-collapse">
+                                <div class="custom-control custom-checkbox">
+                                    <input id="custom" ng-model="vehileOptionModel.custom" type="checkbox">
+                                    <label for="custom">Custom/MAG wheels</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input id="specialHub" ng-model="vehileOptionModel.specialHub" type="checkbox">
+                                    <label for="specialHub">Special hub caps</label>
+                                </div> 
+                                 <div class="indent-fields">
+                                    <label>Quantity on vehicle</label>
+                                    <input type="text" class="form-control" ng-model="vehileOptionModel.quantity" placeholder="Enter Quantity" value="" id = "quantity">
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input id="specialTires" ng-model="vehileOptionModel.specialTires" type="checkbox">
+                                    <label for="specialTires">Special tires</label>
+                                </div>
+                                <div class="indent-fields">
+                                    <label>Type</label>
+                                    <input type="text" class="form-control" ng-model="vehileOptionModel.type" placeholder="Enter Type" value="" id = "type">
+                                </div>
+                                
+                                 <div class="custom-control custom-checkbox">
+                                    <input id="spoiler" ng-model="vehileOptionModel.spoiler" type="checkbox">
+                                    <label for="spoiler">Spoiler</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input id="sunroof" ng-model="vehileOptionModel.sunroof" type="checkbox">
+                                    <label for="sunroof">Sunroof/Moonroof</label>
+                                </div>
+                                <div class="indent-fields">
+                                    <div class="custom-control custom-checkbox">
+                                        <input id="motorized" ng-model="vehileOptionModel.motorized" type="checkbox">
+                                        <label for="motorized">Motorized</label>
+                                    </div>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input id="rearWindow" ng-model="vehileOptionModel.rearWindow"  type="checkbox">
+                                    <label for="rearWindow">Rear window wiper</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input id="daytime" ng-model="vehileOptionModel.daytime" type="checkbox">
+                                    <label for="daytime">Daytime running lights</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input id="detectionSystem" ng-model="vehileOptionModel.detectionSystem" type="checkbox">
+                                    <label for="detectionSystem">Blind spot detection system</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input id="backupCamera" ng-model="vehileOptionModel.backupCamera" type="checkbox">
+                                    <label for="backupCamera">Backup camera</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input id="collision" ng-model="vehileOptionModel.collision" type="checkbox">
+                                    <label for="collision">Collision avoidance system</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input id="backup" ng-model="vehileOptionModel.backup"  type="checkbox">
+                                    <label for="backup">Backup sensor</label>
+                                </div>
+                            </div>
+                        </div>					 
+                     </div> 
+                     
+                     <!-- <div class="row" style="margin-left: 1px;">
+        
+                                    <div ng-repeat="item in exterior" id="checkbox-{{item.name}}">
+                        
+                                        <label class="custom-control custom-checkbox">
+                                            <input id="checkbox1" name="Seats" type="checkbox" ng-true-value="true" ng-false-value="false"  ng-change="exterior(item)" value="{{item.name}}"
+                                                ng-model="vehicleOption.name">
+                                            <span class="custom-control-indicator"></span>
+                                            <span class="custom-control-description">{{item.name}}</span>
+                                        </label>
+                                    </div>
+                                </div>  -->
+                    
+                    <!-- <div class="row-eq-height row2 clearfix">
+                        <div class="col-lg-4 col-md-4">
+                            <h1>Seats</h1>
+                            <div class="form-row border-collapse">
+                                <div class="custom-control custom-checkbox">
+                                    <input id="checkbox24"  type="checkbox" name ="check" ng-model="model.vehicleOption"required>
+                                    <label for="checkbox24">Automatic seat belts</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input id="checkbox25"  type="checkbox" name ="check" ng-model="model.vehicleOption" required>
+                                    <label for="checkbox25">Power seats</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input id="checkbox26"  type="checkbox" name ="check" ng-model="model.vehicleOption" required>
+                                    <label for="checkbox26">Heated seats</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input id="checkbox27" type="checkbox" name ="check"ng-model="model.vehicleOption" required>
+                                    <label for="checkbox30">Lumbar</label>
+                                </div>
+                            </div> 
+                         </div>  -->
+    
+                                 <!--instrumentation--> 
+    
+                         <div class="row" style="margin-left: 1px;">
+                                <h1>Seats</h1>
+                            <div ng-repeat="item in Seats" id="checkbox-{{item.name}}">
+                
+                                <label class="custom-control custom-checkbox">
+                                    <input  name="Seat" id = "Seat" type="checkbox" ng-change="handleLocation(item)" value="{{item.name}}"
+                                        ng-model="vehileOptionModel.seats[item.model]">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description">{{item.name}}</span>
+                                </label>
+                            </div>
+                        </div>
+    
+                                 <!--ends-->
+    
+                        <!-- <div class="col-lg-4 col-md-4">
+                            <h1>Instrumentation</h1> 
+                             <div class="form-row border-collapse">
+                                <div class="custom-control custom-checkbox">
+                                    <input id="checkbox28"  type="checkbox">
+                                    <label for="checkbox28">Air conditioner</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input id="checkbox29"  type="checkbox">
+                                    <label for="checkbox20">Digital instrumentation</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input id="checkbox30"  type="checkbox">
+                                    <label for="checkbox30">Cruise control</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input id="checkbox31"  type="checkbox">
+                                    <label for="checkbox31">Tilt wheel</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input id="checkbox32"  type="checkbox">
+                                    <label for="checkbox32">Power windows</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input id="checkbox33"  type="checkbox">
+                                    <label for="checkbox33">Power door locks</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input id="checkbox34"  type="checkbox">
+                                    <label for="checkbox34">Power steering</label>
+                                </div>					
+                                <div class="custom-control custom-checkbox">
+                                    <input id="checkbox35"  type="checkbox">
+                                    <label for="checkbox35">Power antenna</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input id="checkbox36"  type="checkbox">
+                                    <label for="checkbox36">Power trunk</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input id="checkbox37"  type="checkbox">
+                                    <label for="checkbox37">Power mirrors</label>
+                                </div>
+                            </div>
+                        </div>  -->
+    
+                        <!--instrumentation-->
+    
+                        <div class="col-lg-4 col-md-4">
+                        <div class="row" style="margin-left: 1px;">
+                                <h1>Instrumentation</h1>
+                            <div ng-repeat="item in Instrumentation" id="checkbox-{{item.name}}">
+                
+                                <label class="custom-control custom-checkbox">
+                                    <input id="checkbox1" name="instruments" id="instruments" type="checkbox"  ng-change="handleLocation(item)" value="{{item.name}}"
+                                        ng-model="vehileOptionModel.instruments[item.model]">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description">{{item.name}}</span>
+                                </label>
+                            </div>
+                        </div>
+                        </div>
+                        <!--end-->
+    
+                        <!--saftey-->
+                        <!-- <div class="row" style="margin-left: 1px;">
+                                <h1>safty</h1>
+                            <div ng-repeat="item in safty" id="checkbox-{{item.name}}">
+                                    <div ng-repeat="item in radioItems" id="radio-{{item.name}}">
+                                            <label class="custom-control custom-checkbox">
+                                                    <input id="checkbox1" name="Seats" type="radio" ng-checked="item.checked" ng-change="safty(item)" value="{{item.name}}"
+                                                        ng-model="vehicleOption.name">
+                                                    <span class="custom-control-indicator"></span>
+                                                    <span class="custom-control-description">{{item.name}}</span>
+                                                </label>
+                                                </div>
+                                <label class="custom-control custom-checkbox">
+                                    <input id="checkbox1" name="Seats" type="checkbox" ng-checked="item.checked" ng-change="safty(item)" value="{{item.name}}"
+                                        ng-model="vehicleOption.name">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description">{{item.name}}</span>
+                                </label>
+                            </div>
+                        </div> -->
+                       
+                        <div class="col-lg-4 col-md-4">
+                            <h1>Safety</h1>
+                            <div class="form-row border-collapse">
+                                <div class="custom-control custom-checkbox">
+                                    <input id="antiLockBreaks" ng-model="vehileOptionModel.antiLockBreaks"  type="checkbox">
+                                    <label for="antiLockBreaks">Anti-lock brakes</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input id="fornAirBag" ng-model="vehileOptionModel.fornAirBag"   type="checkbox">
+                                    <label for="fornAirBag">Front air bags</label>
+                                </div>
+                                <div class="indent-fields">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="radio" ng-model="vehileOptionModel.fornAirBagValue" id="fornAirBagValue1" value="1" name="fornAirBagValue">
+                                        <label for="fornAirBagValue1"> 1</label>					
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="radio" ng-model="vehileOptionModel.fornAirBagValue" id="fornAirBagValue2" value="2" name="fornAirBagValue">
+                                        <label for="fornAirBagValue2"> 2</label>	
+                                    </div>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input id="radio"  ng-model="vehileOptionModel.sideAirBag" type="checkbox">
+                                    <label for="sideAirBag">Side air bags</label>
+                                </div>
+                                <div class="indent-fields">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="radio" ng-model="vehileOptionModel.sideAirBagValue" id="sideAirBagValue" value="" name="sideAirBagValue">
+                                        <label for="sideAirBagValue"> 1</label>					
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="radio" ng-model="vehileOptionModel.fornAirBagValue" id="sideAirBagValue2"  value="" name="sideAirBagValue">
+                                        <label for="radio6"> 2</label>	
+                                    </div>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input id="radio"  ng-model="vehileOptionModel.rearAirBag" type="checkbox">
+                                    <label for="rearAirBag">Rear air bags</label>
+                                </div>
+                                <div class="indent-fields">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="radio" ng-model="vehileOptionModel.rearAirBag"  id="rearAirBagValue1"  value="" name="rairbagsValue">
+                                        <label for="rearAirBag"> 1</label>					
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="radio" ng-model="vehileOptionModel.rearAirBag"  id="rearAirBagValue2"  value="" name="rairbagsValue">
+                                        <label for="rearAirBag"> 2</label>	
+                                    </div>
+                                </div>							
+                            </div>						
+                        </div>
+                    </div> 
+                    
+                   <!--Saftey-->
+                            <!-- <div class="col-lg-4 col-md-4">
+                                <div class="row" style="margin-left: 1px;">
+                                    <h1>Safety</h1>
+                                    <div ng-repeat="item in Safety" id="checkbox-{{item.name}}">
+                                            <label class="custom-control custom-checkbox">
+                                                <input id="checkbox1" name="Safety" id="Safety" type="checkbox" ng-change="handleLocation(item)" value="{{item.name}}" ng-model="vehileOption.radio">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-description">{{item.name}}</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div> -->
+                     <!--end-->
+                     
+                 <div class="clearfix">
+                        <div class="col-lg-12 col-md-12">
+                            <div class="form-row border-collapse">
+                                <div class="custom-control custom-checkbox">
+                                    <input id="equipment"  ng-model="vehileOptionModel.equipment" type="checkbox" name = "optional" id = "optional" ng-model = "vehicle.optional"  ng-change="handleLocation()">
+                                    <label for="equipment">Other optional equipment (250 char. max)</label>
+                                    <div class="form-group" ng-class="{ 'has-error': vehileInfOption.model.$touched && vehileInfOption.model.$error.required, 'has-success':vehileInfOption.model.$valid}">
+                                            <input autocomplete="off" type="text" name="model3" id="model3" class="form-control" ng-model="vehileOptionModel.model3" placeholder="Model"
+                                                required />
+                                            <span ng-show="vehileInfOption.model.$touched && vehileInfOption.model.$error.required" class="help-block">Model is required</span>
+                                        </div>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input id="checkHere"  ng-model="vehileOptionModel.checkHere" type="checkbox">
+                                    <label for="checkHere">Check here if this is a van or limo</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>				        
+            <div class="form-actions">
+                <div class="col-xs-12 col-xs-offset-6">
+    
+                    <input type="button" class="btn btn-primary" wz-previous="logStep()" value="BACK" />
+                    <input type="button" class="btn btn-primary" ui-sref="login" value="Cancel" />
+                    <input type="button" class="btn btn-primary" wz-next="logStep(vehileOptionModel)" value="Save & Continue" />
+                </div>
+            </div>
         </div>
+        
     </div>
-    </form>
-</div>
+    </section>	 

@@ -5,11 +5,15 @@ app
             templateUrl: 'rest/app/client/components/vehicleOption-form/vehicleOption-form.view.html',
             link: function ($scope, $elem, $attr) {
                 var vm = this;
+             //   $scope.model = {};
                 $scope.selectedValue = '';
+                $scope.vehileOptionModel = {};
                 $scope.checked = function (x) {
                     console.log(x);
                     console.log($scope.selectedPlayer1, $scope.selectedPlayer2);
                 }
+
+                
                 $scope.radioEquipment = [
                     {
                         name: 'Dashboard',
@@ -76,6 +80,50 @@ app
                     }
                 ];
 
+                $scope.automaticallyEngage = [
+                    
+                        {
+                            name: 'Active disabling device',
+                            model: 'add',
+                            checked: true
+                        }   
+                    
+                ];
+
+                $scope.mustbeManuallyEngage = [
+                    
+                    {
+                        name: 'Siren/audible alarm only',
+                        model: 'siren',
+                        checked: true
+                    }  ,
+                    {
+                        name: 'Combat auto theft (CAT)',
+                        model: 'combat',
+                        checked: true
+                    }  
+                
+            ];
+            $scope.IssuedrearWindowsticker = [
+                    
+                {
+                    name: 'Etched glass indicating VIN or coding',
+                    model: 'etched',
+                    checked: true
+                }  ,
+               
+            
+        ];
+            $scope.automaticallyEngage = [
+                    
+                {
+                    name: 'Active disabling device',
+                    model: 'add',
+                    checked: true
+                }   
+            
+        ]
+
                 $scope.exterior = [
                     {
                         name: 'Custom/MAG wheels',
@@ -127,8 +175,79 @@ app
                         checked: true
                     }
                 ];
+               // $scope.seatItemTypes = function(){
+                    $scope.Seats = [
+                        {
+                            name: 'Automatic seat belts',
+                            model: 'asb',
+                            checked: true
+                        }, {
+                            name: 'Power seats',
+                            model: 'Ps',
+                            checked: true
+                        },
+                        {
+                            name: 'Heated seats',
+                            model: 'hs',
+                            checked: true
+                        },
+                        {
+                            name: 'Lumbar',
+                            model: 'lumber',
+                            checked: true
+                        },
+                     ];
+    
+              //  }
+               
+                 $scope.Instrumentation = [
+                    {
+                        name: 'Air conditioner',
+                        model: 'ac',
+                        checked: true
+                    }, {
+                        name: ' Digital instrumentation',
+                        model: 'di',
+                        checked: true
+                    },
+                    {
+                        name: 'Cruise control',
+                        model: 'cc',
+                        checked: true
+                    },
+                    {
+                        name: 'Power windows',
+                        model: 'pw',
+                        checked: true
+                    },
+                    {
+                        name: ' Power door locks',
+                        model: 'pdl',
+                        checked: true
+                    },
+                    {
+                        name: ' Power steering',
+                        model: 'ps',
+                        checked: true
+                    },
+                    {
+                        name: 'Power antenna',
+                        model: 'pa',
+                        checked: true
+                    },
+                    {
+                        name: 'Power trunk',
+                        model: 'pt',
+                        checked: true
+                    },
+                    {
+                        name: ' Power mirrors',
+                        model: 'pm',
+                        checked: true
+                    },
+                 ];
 
-                $scope.safty = [
+                $scope.Safety = [
                     {
                         name: 'Anti-lock brakes',
                         model: 'alb',
@@ -185,7 +304,25 @@ app
                             }
                         ]
                     },
-                ]
+                ];
+                $scope.Otheroptionalequipment = [
+                    
+                    {
+                        name: 'Other optional equipment',
+                        model: 'optional',
+                        checked: true
+                    }   
+                
+            ];
+            $scope.Checkhere = [
+                    
+                {
+                    name: 'Check here if this is a van or limo(250 char. max)',
+                    model: 'chek',
+                    checked: true
+                }   
+            
+        ]
 
                 $scope.handleRadioClick = function (item) {
                     $scope.flag = item.name === 'Other(Describe)'
@@ -193,36 +330,33 @@ app
                         : false
                 };
 
-                $scope.EPAStickers = [
-                    {
-                        name: 'EPA Sticker Not Clear',
-                        checked: true
-                    }, {
-                        name: 'EPA Sticker Missing',
-                        checked: false
-                    }
-                ];
+                // $scope.EPAStickers = [
+                //     {
+                //         name: 'EPA Sticker Not Clear',
+                //         checked: true
+                //     }, {
+                //         name: 'EPA Sticker Missing',
+                //         checked: false
+                //     }
+                // ];
 
-                $scope.EPAStickerClick = function (item) {
-                    alert(item.name);
-                };
+                // $scope.EPAStickerClick = function (item) {
+                //     alert(item.name);
+                // };
 
-                $scope.principleLocations = [
-                    {
-                        name: 'Same as insured`s address',
-                        checked: true
-                    }, {
-                        name: 'Other - Please Specify',
-                        checked: false
-                    }
-                ];
 
                 $scope.handleLocation = function (item) {
-                    alert(item.name);
+                    console.log(item.name);
+                    //alert(item.name);
 
                     $scope.otherFlag = item.name === 'Other - Please Specify'
                         ? true
                         : false
+                };
+
+                $scope.logStep = function (vehileOptionModel) {
+                   // console.log(item.vehileOption);
+                    console.log("Step continued", vehileOptionModel);
                 };
 
                 $scope.logModel = function () {
